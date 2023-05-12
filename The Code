@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Number Generator</title>
+    <style>
+      body {
+        background-color: #0F2027;
+        background-image: linear-gradient(315deg, #0F2027 0%, #203A43 74%);
+        color: #F5F5F5;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 1.2rem;
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 3rem;
+        margin-top: 5rem;
+        margin-bottom: 2rem;
+        color: #F5F5F5;
+        text-transform: uppercase;
+      }
+
+      p {
+        font-size: 2rem;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        color: #F5F5F5;
+        position: relative;
+      }
+
+      span {
+        font-weight: bold;
+        color: #FF4500;
+        font-size: 4rem;
+        display: inline-block;
+        position: relative;
+        top: 0;
+        transition: top 1s ease-in-out;
+      }
+
+      .revealed {
+        top: -250px;
+      }
+
+      button {
+        background-color: #FF4500;
+        color: #F5F5F5;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #F5F5F5;
+        color: #FF4500;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Random Number Generator</h1>
+    <p>The randomly generated number is: <span id="number"></span></p>
+    <button id="generate-button">Generate New Number</button>
+
+    <script>
+      // Generate a random number between 1 and 40000
+      function generateRandomNumber() {
+        var number = Math.floor(Math.random() * 40000) + 1;
+        // Display the number on the webpage in a slot machine style
+        var numberElement = document.getElementById("number");
+        numberElement.classList.remove("revealed");
+        numberElement.innerHTML = "00000" + number.toString();
+        setTimeout(function() {
+          numberElement.classList.add("revealed");
+          numberElement.innerHTML = number.toString();
+        }, 1000);
+      }
+      generateRandomNumber();
+
+      // Add click event listener to the button
+      var button = document.getElementById("generate-button");
+      button.addEventListener("click", generateRandomNumber);
+    </script>
+  </body>
+</html>
